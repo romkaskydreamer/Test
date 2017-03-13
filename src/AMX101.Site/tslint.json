@@ -1,0 +1,29 @@
+{
+    "extends": "tslint:recommended",
+    "formatter": "codeFrame",
+    "rules": {
+        "curly": true,
+        "arrow-parens": false,
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "whitespace": false,
+        "no-string-literal": false,
+        "max-line-length": false,
+        "variable-name": false,
+        "no-console": false,
+        "radix": false,
+        "no-trailing-whitespace": false,
+        "one-line": false,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "never",
+                "singleline": "never"
+            }
+        ]
+    },
+    "jsRules": {
+        "curly": true
+    },
+    "rulesDirectory": []
+}

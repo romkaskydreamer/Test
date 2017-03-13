@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4DE91228-2616-46D4-AAE4-5720506037D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F357F3B0-87AE-4B02-B7EB-4B0D1C360E57}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AMX101.Site", "src\AMX101.Site\AMX101.Site.xproj", "{3C51D073-0898-4B97-8589-1652FE68D2DF}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AMX101.Data", "src\AMX101.Data\AMX101.Data.xproj", "{5F764C7E-2A0B-4A5A-A950-06406115F459}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AMX101.Dto", "src\AMX101.Dto\AMX101.Dto.xproj", "{167876DD-E815-4F64-A3BA-4BD8CD953FEB}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AMX101.JsonExport", "src\AMX101.JsonExport\AMX101.JsonExport.xproj", "{79B1D773-A619-47F3-AC1D-7EBA99A55A38}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AMX101.LocalData", "src\AMX101.LocalData\AMX101.LocalData.xproj", "{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C51D073-0898-4B97-8589-1652FE68D2DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C51D073-0898-4B97-8589-1652FE68D2DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C51D073-0898-4B97-8589-1652FE68D2DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C51D073-0898-4B97-8589-1652FE68D2DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F764C7E-2A0B-4A5A-A950-06406115F459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F764C7E-2A0B-4A5A-A950-06406115F459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F764C7E-2A0B-4A5A-A950-06406115F459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F764C7E-2A0B-4A5A-A950-06406115F459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167876DD-E815-4F64-A3BA-4BD8CD953FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167876DD-E815-4F64-A3BA-4BD8CD953FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167876DD-E815-4F64-A3BA-4BD8CD953FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167876DD-E815-4F64-A3BA-4BD8CD953FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B1D773-A619-47F3-AC1D-7EBA99A55A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B1D773-A619-47F3-AC1D-7EBA99A55A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B1D773-A619-47F3-AC1D-7EBA99A55A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B1D773-A619-47F3-AC1D-7EBA99A55A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C51D073-0898-4B97-8589-1652FE68D2DF} = {4DE91228-2616-46D4-AAE4-5720506037D7}
+		{5F764C7E-2A0B-4A5A-A950-06406115F459} = {4DE91228-2616-46D4-AAE4-5720506037D7}
+		{167876DD-E815-4F64-A3BA-4BD8CD953FEB} = {4DE91228-2616-46D4-AAE4-5720506037D7}
+		{79B1D773-A619-47F3-AC1D-7EBA99A55A38} = {4DE91228-2616-46D4-AAE4-5720506037D7}
+		{9C13A6B3-3FD7-4C01-AF01-9CB9DE044614} = {4DE91228-2616-46D4-AAE4-5720506037D7}
+	EndGlobalSection
+EndGlobal

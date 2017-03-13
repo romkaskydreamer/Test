@@ -1,0 +1,237 @@
+﻿<div ng-show="isLoading" style="width: 100vw; height:100vh">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">LOADING</p>
+    </div>
+</div>
+<div ng-show="!isLoading" class="height-container single-page comparison-header">
+    <header class="headerHeight">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="top-nav">
+                        <ul>
+                            <li>
+                                <a ui-sref="result({region: '{{region}}', postcode: {{postcode}}})">Your Neighbourhood</a>
+                            </li>
+                            <li>
+                                <a ui-sref-active>Comparison View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1 header-content">
+                    <h1>American Express in your neighbourhood</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="grey-bg fill-remaining-height">
+        <div class="in-page-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nav-left">
+                            <ul ng-show="region == 'aus'">
+                                <li ng-repeat="industry in industries track by $index">
+                                    <a ng-class="{'active':industry.name == selectedIndustry.name}" ng-click="changeIndustry(industry)">{{industry.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-right">
+                            <ul class="has-title">
+                                <li>
+                                    Export As:
+                                </li>
+                                <li>
+                                    <a ng-click="renderPdf()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+                                </li>
+                                <li>
+                                    <a ng-click="renderImage()"><i class="fa fa-file-image-o" aria-hidden="true"></i> JPG</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-charts">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="overflow-table">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th class="postcode">
+                                            <table>
+                                                <tr>
+                                                    <td class="number"></td>
+                                                    <td class="icon"></td>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                        <th class="col1">
+                                            <table>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div id="cards">
+
+                                                        </div>
+                                                        Cards in force
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                        <th class="col2">
+                                            <table>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div id="transactions">
+
+                                                        </div>
+                                                        {{selectedIndustry.name}} Transactions
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                        <th class="col3">
+                                            <table>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div id="merchant">
+
+                                                        </div>
+                                                        {{selectedIndustry.name}} Spend at Merchants
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tr ng-repeat="p in postcodes track by $index">
+                                    <td class="postcode">
+                                        <table>
+                                            <tr>
+                                                <td class="number">
+                                                    <input type="text" ng-model="p.postcode" ng-change="updatePostcode(p.postcode, $index)" ng-model-options="{updateOn: 'keyup', debounce:1000}" ng-readonly="$index == 0">
+                                                </td>
+                                                <td class="icon inactive close">
+                                                    <a ng-show="$index > 0 && !p.errorMsg" ng-click="removePostcode($index)">
+                                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                                    </a>
+                                                    <i ng-show="p.isLoading" class="fa fa-refresh fa-spin fa-fw" style="font-size: 14px;"></i>
+
+                                                    <i class="fa fa-times-circle error" ng-show="p.errorMsg" aria-hidden="true"></i>
+                                                </td>
+                                            </tr>
+                                            <tr class="error" ng-show="p.errorMsg">
+                                                <td colspan="4">{{p.errorMsg}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col1" ng-show="canDisplay(p)">
+                                        <table ng-show="!p.IsLoading">
+                                            <tr>
+                                                <td class="number">{{p.cards | number}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col2" ng-show="canDisplay(p)">
+                                        <table ng-show="!p.IsLoading">
+                                            <tr>
+                                                <td class="number">{{p.transactions | number}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col3" ng-show="canDisplay(p)">
+                                        <table ng-show="!p.IsLoading">
+                                            <tr>
+                                                <td class="number">{{p.merchantSpend | currency:'$':0}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td colspan="3" ng-show="!canDisplay(p)" class="error">
+                                        <p class="text-center">Sorry, there is not enough data available for this postcode</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="icon add-neighbourhood">
+                                        <a ng-click="addPostcode()" ng-show="postcodes.length < 10">
+                                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            <span>Add neighbourhood</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td class="postcode">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    TOTAL
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col1">
+                                        <table>
+                                            <tr>
+                                                <td class="number">{{totalCards() | number}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col2">
+                                        <table>
+                                            <tr>
+                                                <td class="number">{{totalTransactions() | number}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="col3">
+                                        <table>
+                                            <tr>
+                                                <td class="number">{{totalMerchantSpend() | currency:'$':0}}</td>
+                                                <td class="percent"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="toggle-view-bar">
+            <div class="toggle-view-bar__inner">
+                <div class="inner-toggle-view-bar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="footer-logo">
+                                    <img src="/img/footer-logo.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <terms-service></terms-service>
+            </div>
+        </div>
+    </section>
+    
+</div>

@@ -1,0 +1,43 @@
+﻿<div class="footer">
+    <section class="expandedTermsAndConditions terms-and-conditions" ng-show="isExpanded">
+        <div class="padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>The information and representations contained in this presentation are based on publicly available sources and information that you may have provided us directly. All representations, facts and figures are made by way of example and are for illustrative purposes only. This presentation does not represent an offer and shall not be deemed to create any binding rights or obligations in respect to either party.</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>TERMS & CONDITIONS</h2>
+                                <p>American Express Australia Limited (ABN 92 108 952 085). ® Registered Trademark of American Express Company has developed this tool to provide aggregated information on American Express card activity within a specific postcode zone. The tool includes both direct and modelled data which should be used for indicative purposes only. Accuracy may vary by business unit - i.e. American Express Australia Limited (ABN 92 108 952 085). Extracted does not reflect any Personally Identifiable Information (PII).</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>REFERENCES</h2>
+                                <ul>
+                                    <li ng-repeat="source in sources track by $index">
+                                        {{source.id}}. {{source.text}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="viewTermsAndConditions">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p ng-click="toggle()"><span ng-show="!isExpanded">View</span><span ng-show="isExpanded">Hide</span> Terms and Conditions and References <i class="fa fa-chevron-up" aria-hidden="true" ng-show="!isExpanded"></i><i class="fa fa-chevron-down" aria-hidden="true" ng-show="isExpanded"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

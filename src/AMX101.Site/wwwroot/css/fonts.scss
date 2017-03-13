@@ -1,0 +1,33 @@
+@font-face {
+	font-family:'BentonRegular';
+	src:url("../fonts/benton/BentonSans-Regular.eot?#iefix");
+	src:url("../fonts/benton/BentonSans-Regular.eot?#iefix") format("eot"),
+		url("../fonts/benton/BentonSans-Regular.woff") format("woff"),
+		url("../fonts/benton/BentonSans-Regular.ttf") format("truetype")
+}
+@font-face {
+	font-family:'BentonMedium';
+	src:url("../fonts/benton/BentonSans-Medium.eot?#iefix");
+	src:url("../fonts/benton/BentonSans-Medium.eot?#iefix") format("eot"),
+		url("../fonts/benton/BentonSans-Medium.woff") format("woff"),
+		url("../fonts/benton/BentonSans-Medium.ttf") format("truetype")
+}
+@font-face {
+	font-family:'BentonBold';
+	src:url("../fonts/benton/BentonSans-Bold.eot?#iefix");
+	src:url("../fonts/benton/BentonSans-Bold.eot?#iefix") format("eot"),
+		url("../fonts/benton/BentonSans-Bold.woff") format("woff"),
+		url("../fonts/benton/BentonSans-Bold.ttf") format("truetype")
+}
+
+.bentonRegular {
+	font-family:'BentonRegular'
+}
+
+.bentonMedium {
+	font-family:'BentonMedium'
+}
+
+.bentonBold {
+	font-family:'BentonBold'
+}

@@ -1,0 +1,24 @@
+﻿@model AMX101.Site.Models.TileViewModel
+<html>
+<head>
+    <title>Single View</title>
+</head>
+<body>
+    <table width="355" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="355" valign="top">
+                    <img src="@(Model.ImageDomain)@Model.ImagePath" alt=""><br />
+                    <span style="color:#009bba;font-size:22px;font-family:arial;font-weight:bold;">@Model.Value</span><br />
+                    <span style="font-size:12px;font-weight:bold;color:#4c4f54;text-transform:uppercase;font-family:arial;">@Model.Heading</span><br />
+                    <div class="divider" style="height:1px;width:345px;background-color:#009bba;"></div><br />
+
+                    <div style="font-size: 10px; color: #4c4f54; font-family: arial;">
+                        @Model.FormattedText <span style="vertical-align: super;font-size:0.8em;">@(Model.SourceId?.ToString() ?? string.Empty)</span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

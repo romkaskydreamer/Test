@@ -1,0 +1,153 @@
+﻿<div ng-show="isLoading" style="width: 100vw; height:100vh">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">LOADING</p>
+    </div>    
+</div>
+
+<image-modal visible="isModalVisible" current-common-claims="selectedCommonClaims" current-claims="selectedClaimsForModal" postcode="postcode"></image-modal>
+
+<div class="height-container single-page altView" ng-show="!isLoading" ng-cloak>
+    <header class="headerHeight" style="background-image: url('{{getStaticMapUrlFromPostCode(postcode, region)}}')">
+        <!--<div id="map"></div>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="top-nav">
+                        <ul>
+                            <li>
+                                <a href="" ui-sref-active>Your Neighbourhood</a>
+                            </li>
+                            <li ng-show="region !== 'sng'">
+                                <a href="" ui-sref="compare({region: '{{region}}', postcode: {{postcode}}})">Comparison View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1 header-content">
+                    <h1>American Express in your neighbourhood</h1>
+                    <div class="input-wrapper large-input input-postcode">
+                        <input type="text" ng-model="tempPostcode" ng-model-options="{debounce:1000}">
+                    </div>
+                    <p ng-show="postcodeInvalid" style="color: red; font-size: 16px; margin: 0;">That is not a valid postcode</p>
+                    <p ng-show="noDataMessage" style="color: red; font-size: 16px; margin: 0;">No data available for this postcode</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <section class="grey-bg fill-remaining-height hide-overflow">
+        <div class="in-page-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nav-left">
+                            <ul ng-show="region == 'aus'">
+                                <li ng-repeat="industry in industries track by $index">
+                                    <a ng-class="{'active':industry.name == selectedIndustry.name}" ng-click="changeIndustry(industry)">{{industry.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-right">
+                            <ul class="has-title">
+                                <li>
+                                    Export As:
+                                </li>
+                                <li>
+                                    <a ng-click="renderPdf()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+                                </li>
+                                <li>
+                                    <a ng-click="displayModal()"><i class="fa fa-file-image-o" aria-hidden="true"></i> JPG</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile-groups">
+            <div class="container">
+                <div class="row">
+                    <div class="tile-groups__column__wrapper">
+                        <div class="tile-groups__column" ng-show="staticClaim">
+                            <div class="tile-wrapper">
+                                <div class="icon" style="background-image: url('/{{staticClaim.imagePath}}')"></div>
+                                <div class="number">
+                                    {{staticClaim.claimValue}}
+                                </div>
+                                <h3>{{staticClaim.claimName}}</h3>
+                                <p>{{staticClaim.formattedClaimText}} <a ng-show="staticClaim.sourceId" ng-click="openSources()" class="superscript">{{staticClaim.sourceId}}</a></p>
+                            </div>
+                        </div>
+                        <div class="tile-groups__column" ng-show="selectedPrimaryClaim">
+                            <div class="tile-wrapper">
+                                <div class="icon" style="background-image: url('/{{selectedPrimaryClaim.imagePath}}')"></div>
+                                <div class="number">
+                                    {{selectedPrimaryClaim.claimValue}}
+                                </div>
+                                <h3>{{selectedPrimaryClaim.claimName}}</h3>
+                                <p>{{selectedPrimaryClaim.formattedClaimText}} <a ng-show="selectedPrimaryClaim.sourceId" ng-click="openSources()" class="superscript">{{selectedPrimaryClaim.sourceId}}</a></p>
+                            </div>
+                        </div>
+                        <div class="tile-groups__column" ng-show="selectedSecondaryClaim">
+                            <div class="tile-wrapper">
+                                <div class="icon" style="background-image: url('/{{selectedSecondaryClaim.imagePath}}')"></div>
+                                <div class="number">
+                                    ${{selectedSecondaryClaim.claimValue}}
+                                </div>
+                                <h3>{{selectedSecondaryClaim.claimName}}</h3>
+                                <p>{{selectedSecondaryClaim.formattedClaimText}} <a ng-show="selectedSecondaryClaim.sourceId" ng-click="openSources()" class="superscript">{{selectedSecondaryClaim.sourceId}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row secondTileRow">
+                    <div class="tile-groups__column__wrapper">
+                        <div class="tile-groups__column" ng-repeat="claim in selectedCommonClaims track by $index">
+                            <div class="tile-wrapper">
+                                <div class="refresh">
+                                    <i class="fa fa-refresh cursor" aria-hidden="true" ng-click="refreshClaim($index)" ng-show="!claim.isRefreshing"></i>
+                                    <i ng-show="claim.isRefreshing" class="fa fa-refresh fa-spin fa-fw"></i>
+                                </div>
+                                <div class="icon" style="background-image: url('/{{claim.imagePath}}')"></div>
+                                <div class="number">
+                                    {{claim.value}}
+                                </div>
+                                <h3>{{claim.heading}}</h3>
+                                <p>
+                                    {{claim.claimText}} <a ng-show="claim.sourceId" ng-click="openSources()" class="superscript">{{claim.sourceId}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="toggle-view-bar">
+        <div class="inner-toggle-view-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="scroll-btn">
+                            <div class="scroll-btn-wrapper toggleRowsView">
+                                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-down" aria-hidden="true" style="display: none;"></i>
+                            </div>
+                        </div>
+                        <div class="footer-logo">
+                            <img src="/img/footer-logo.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <terms-service></terms-service>
+    
+</div>
+<div id="map"></div>

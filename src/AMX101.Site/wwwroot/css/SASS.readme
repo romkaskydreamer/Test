@@ -1,0 +1,98 @@
+// Variable Example //
+
+$primary-color;
+
+// Mixin Example //
+
+@mixin border-radius($radius) {
+   -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+       -ms-border-radius: $radius;
+           border-radius: $radius;
+}
+
+.example { 
+    @include border-radius(10px);
+}
+
+// Import a class to another class
+
+.className {
+    background-color:red;
+}
+
+body {
+    @extend .className;
+}
+
+// Math Operators //
+
+article[role="main"] {
+    float: left;
+    width: 600px / 960px * 100%;
+}
+
+aside[role="complementary"] {
+    float: right;
+    width: 300px / 960px * 100%;
+}
+
+// Input Trick with side button // 
+
+HTML
+
+<div class="input-with-btn">
+    <button>Submit</button>
+    <div class="input-wrapper">
+        <input type="text" />
+    </div>
+</div>
+
+CSS
+
+.input-with-btn {
+    .input-wrapper {
+        overflow: hidden; 
+    }
+    input {
+        width:100%;
+        overflow: hidden; 
+    }
+    button {
+        float:right;
+        width:150px;
+    }
+}
+
+// INDEX OVER CLASSES //
+
+-- Have array of colour variables at the top --
+-- 
+
+$colors-list: red yellow pink green purple;
+@each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    
+    tr:nth-child(#{$i}){
+        td.postcode {
+            input::-webkit-input-placeholder {
+                color: $current-color;
+            }
+
+            input:-moz-placeholder { /* Firefox 18- */
+                color: $current-color;
+            }
+
+            input::-moz-placeholder {  /* Firefox 19+ */
+                color: $current-color;
+            }
+
+            input:-ms-input-placeholder {  
+                color: $current-color;
+            }
+            input {
+                color: $current-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+version: 1.0.{build}
+# branches to build
+branches:
+  # whitelist
+  only:
+  - qa
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true  
+# Building script
+install:
+  - gem install sass
+before_build:
+- cmd: >-
+    dotnet restore
+
+    cd src/AMX101.Site/
+    
+    npm install
+build_script:
+- cmd: >-
+    npm run build
+    
+    dotnet build %appveyor_build_folder%\src\AMX101.Site\project.json
+after_build:
+- ps: Remove-Item -Path wwwroot\js\env.js
+- ps: Move-Item -Path wwwroot\js\env.aus.js -Destination wwwroot\js\env.js
+- dotnet publish --output %appveyor_build_folder%\publish_aus 
+- ps: Remove-Item -Path wwwroot\js\env.js
+- ps: Move-Item -Path wwwroot\js\env.nz.js -Destination wwwroot\js\env.js
+- dotnet publish --output %appveyor_build_folder%\publish_nz 
+- ps: Remove-Item -Path wwwroot\js\env.js
+- ps: Move-Item -Path wwwroot\js\env.sng.js -Destination wwwroot\js\env.js
+- dotnet publish --output %appveyor_build_folder%\publish_sng 
+
+# disable automatic tests to speed up deployment
+test: off
+artifacts:
+- path: ./publish_aus
+  name: AMX101.Site.AU
+- path: ./publish_nz
+  name: AMX101.Site.NZ
+- path: ./publish_sng
+  name: AMX101.Site.SNG
+
+deploy:
+# Deploying to a named environment
+- provider: Environment
+  name: MUD-WEB01
+  
+# Slack notifications
+notifications:
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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
+  channel: amx101
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true

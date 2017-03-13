@@ -1,0 +1,66 @@
+﻿<!--<div class="fullScreenOverlay"></div>-->
+<div class="height-container splash-page">
+    <section class="top-section fill-remaining-height">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-7 col-md-offset-3 col-sm-offset-2">
+                    <h2>American Express</h2>
+                    <h3>Global Merchant Services</h3>
+                    <div class="link">
+                        <a href="http://americanexpress.com.au/merchant">americanexpress.com.au/<span>merchant</span></a>
+                    </div>
+                    <h1>American Express in your neighbourhood</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="splash-pattern"></section>
+    <section class="postcode-block">
+        <div class="container">
+            <div class="row" ng-controller="searchController">
+                <div class="col-md-4 col-md-offset-3 col-sm-offset-2 col-sm-5">
+                    <form ng-submit="validateAndSubmit()" name="searchForm">
+                        <div class="input-with-btn postcode-block__input-wrapper">
+                            <button type="submit">Go</button>
+                            <div class="input-wrapper" style="position: relative;" ng-class="{'input-error': form.searchQuery.$touched && form.$invalid || errorMessage || noDataMessage}">
+                                <input type="text" class="postcode-block__input" autocomplete="off" placeholder="Enter a postcode" required="required" name="searchQuery" ng-model="searchQuery" ng-model-options="{debounce:500}" ng-focus="errorMessage = false;"/>
+                                <div class="input-error-message" ng-show="(form.searchQuery.$touched && form.$invalid) || errorMessage">
+                                    <span>Please enter a valid postcode</span>
+                                </div>
+                                <div class="input-error-message" ng-show="noDataMessage">
+                                    <span>No data available for this postcode</span>
+                                </div>
+                            </div>
+                            <div ng-show="isSearching" class="automcomplete-loading">
+                                <span>
+                                    <i class="fa fa-refresh fa-spin fa-fw" style="font-size: 14px;"></i>
+                                </span>
+                            </div>
+
+                            <ul class="autocomplete-results">
+                                <li ng-repeat="item in autocompleteResults" ng-click="selectPostcode(item)" style="cursor: pointer">{{item.postcode}} | {{item.state}}</li>
+                            </ul>
+                            <select ng-model="region" ng-show="configOverride === ''">
+                                <option value="aus">AUS</option>    
+                                <option value="nz">NZ</option>
+                                <option value="sng">SNG</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-splash">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>The information and representations contained in this presentation are based on publicly available sources and information that you may have provided us directly. All representations, facts and figures are made by way of example and are for illustrative purposes only. This presentation does not represent an offer and shall not be deemed to create any binding rights or obligations in respect to either party.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="map"></div>
+</div>

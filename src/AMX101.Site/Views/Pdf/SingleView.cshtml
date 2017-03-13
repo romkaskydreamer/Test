@@ -1,0 +1,192 @@
+﻿@using System.Threading.Tasks
+@using AMX101.Dto.Enitites
+@using AMX101.Site.Models
+@model AMX101.Site.Models.SingleViewPdfViewModel
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>American Express in your neighbourhood: @Model.Postcode</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body style="margin:0px;padding:0px;background-color:#ffffff;padding-top:20mm;">
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0" style="background: url('@(Model.ImageDomain + Model.MapsUrl)') 100% center no-repeat;" height="240">
+        <tbody>
+            <tr>
+                <td style="padding-left: 30px;">
+                    <span style="font-family:arial;font-size:32px;color:white;">American Express In<br /> your neighbourhood</span><br /><br />
+                    <span style="color:#90d6e7;font-size:36px;font-family:arial;font-weight:bold;">@Model.Postcode</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--Navigation row-->
+    <table width="595" border="0" height="40" cellpadding="0" cellspacing="0" bgcolor="#f8f8f8">
+        <tr>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == AMX101.Dto.Models.Industry.All? "color:#1893ad;":"color:#b6b6b6;" )font-size:11px;text-transform:uppercase;font-family:arial;">All Industries</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == AMX101.Dto.Models.Industry.Retail? "color:#1893ad;":"color:#b6b6b6;" )font-size:11px;text-transform:uppercase;font-family:arial;">Retail</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == AMX101.Dto.Models.Industry.Dining? "color:#1893ad;":"color:#b6b6b6;" )font-size:11px;text-transform:uppercase;font-family:arial;">Dining</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == AMX101.Dto.Models.Industry.Lodge? "color:#1893ad;":"color:#b6b6b6;" )font-size:11px;text-transform:uppercase;font-family:arial;">Lodge</span>
+            </td>
+        </tr>
+    </table>
+
+    <!--End Navigation row-->
+    <!-- SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- END SPACER ROW-->
+    <!-- Main Content-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                @foreach (PopulatedClaim item in Model.Claims)
+            {
+                    <td width="40">
+                        <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                    </td>
+
+                    <td width="160" valign="top">
+                        <img src="@(Model.ImageDomain)@item.ImagePath" alt="" style="margin-bottom:10px"><br />
+                        <span style="color:#009bba;font-size:22px;font-family:arial;font-weight:bold;">@item.ClaimValue</span><br />
+                        <span style="font-size:12px;font-weight:bold;color:#4c4f54;text-transform:uppercase;font-family:arial;">@item.ClaimName</span><br />
+                        <div class="divider" style="height:1px;width:160px;background-color:#009bba;margin-bottom:10px;margin-top:10px;"></div>
+                        
+                        <div style="font-size: 10px; color: #4c4f54; font-family: arial;">
+                            @item.FormattedClaimText <span style="vertical-align: super;font-size:0.8em;">@(item.SourceId?.ToString() ?? string.Empty)</span>
+                        </div>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+            <tr>
+                @foreach (var item in Model.StaticClaims)
+                {
+                    <td width="40">
+                        <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display: block">
+                    </td>
+                    <td width="160" valign="top">
+                        <img src="@(Model.ImageDomain)@item.ImagePath" alt="" style="margin-bottom:10px"><br />
+                        <span style="color: #009bba; font-size: 22px; font-family: arial; font-weight: bold;">@item.Value</span><br />
+                        <span style="font-size: 12px; font-weight: bold; color: #4c4f54; text-transform: uppercase; font-family: arial;">@item.Heading</span><br />
+                        <div class="divider" style="height:1px;width:160px;background-color:#009bba;margin-bottom:10px;margin-top:10px;"></div>
+
+                        <div style="font-size: 10px; color: #4c4f54; font-family: arial;">
+                            @item.ClaimText <span style="vertical-align: super;font-size:0.8em;">@(item.SourceId?.ToString() ?? string.Empty)</span>
+                        </div>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- END SPACER ROW-->
+    <!-- End Main Content-->
+    <!-- SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- END SPACER ROW-->
+    <!--end Navigation row-->
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/footer.jpg" alt="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <p style="font-size:10px;font-family:arial;page-break-after:always;">
+        The information and representations contained in this presentation are based on publicly available sources and information that you may have provided us directly. All representations, facts and figures are made by way of example and are for illustrative purposes only. This presentation does not represent an offer and shall not be deemed to create any binding rights or obligations in respect to either party.
+    </p>
+
+    <p style="font-size:10px;font-family:arial;margin-top:20mm">
+        <b>TERMS & CONDITIONS:</b><br/>American Express Australia Limited (ABN 92 108 952 085). &reg; Registered Trademark of American Express Company has developed this tool to provide aggregated information on American Express card activity within a specific postcode zone. The tool includes both direct and modelled data which should be used for indicative purposes only. Accuracy may vary by business unit - i.e. American Express Australia Limited (ABN 92 108 952 085). Extracted does not reflect any Personally Identifiable Information (PII).
+    </p>
+
+    <div style="font-size:10px;font-family:arial;">
+        <b>REFERENCES:</b>
+
+        @foreach (var item in Model.Sources)
+        {
+            <div>
+                @{var source = $"{item.Key}. {item.Value}";}
+                @(source)
+            </div>
+        }
+    </div>
+</body>
+
+</html>

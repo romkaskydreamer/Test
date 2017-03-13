@@ -1,0 +1,309 @@
+﻿@using AMX101.Dto.Models
+@using AMX101.Site.Models
+@model AMX101.Site.Models.ComparePdfViewModel
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body style="margin:0px;padding:0px;background-color: #ffffff; width: 595px;">
+
+    <!-- Header Row-->
+    <table width="595" border="0" cellspacing="0" cellpadding="0" height="44">
+        <tbody>
+            <tr>
+                <td width="40">
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <span style="font-family:arial;font-size:16px;color:#002664;font-weight:bold;">American Express In your neighbourhood</span> <span style="font-family:arial;font-size:16px;color:#002664;font-weight:bold;">|</span> <span style="color:#009bba;font-size:16px;font-family:arial;font-weight:bold;">Comparison View</span>
+                </td>
+                <td width="40">
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- End Header Row-->
+    <!--Navigation row-->
+    <table width="595" border="0" height="40" cellpadding="0" cellspacing="0" bgcolor="#EDEBEC">
+        <tr>
+            <td width="40">
+                <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == Industry.All ? "color:#1893ad;" : "color:#b6b6b6;")font-size:11px;text-transform:uppercase;font-family:arial;font-weight:bold;">All Industries</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == Industry.Retail ? "color:#1893ad;" : "color:#b6b6b6;")font-size:11px;text-transform:uppercase;font-family:arial;">Retail</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == Industry.Dining ? "color:#1893ad;" : "color:#b6b6b6;")font-size:11px;text-transform:uppercase;font-family:arial;">Dining</span>
+            </td>
+            <td align="center" width="590">
+                <span style="@(Model.Industry == Industry.Lodge ? "color:#1893ad;" : "color:#b6b6b6;")font-size:11px;text-transform:uppercase;font-family:arial;">Lodge</span>
+            </td>
+            <td width="40">
+                <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+            </td>
+        </tr>
+    </table>
+
+    <!--End Navigation row-->
+    <!-- SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- END SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th class="postcode">
+                    <table style="height: 199px; width: 100%; border-collapse: collapse; border-spacing: 0px 0px; border-bottom: solid #002663 2px;">
+                        <tbody>
+                            <tr>
+                                <td class="number" width="80"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </th>
+                <th class="col1">
+                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0px 0px;">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" align="right" width="145" style="font-size:12px;color:#9FA0A3;font-family:arial;border-bottom: solid #002663 2px;">
+                                    <table style="border-collapse: collapse; border-spacing: 0px 0px;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="middle">
+                                                    @Html.Raw(Model.CardSvg)<br/>
+                                                    <span style="
+                                                          padding-top: 10px;
+                                                          padding-bottom: 10px;
+                                                          display: block;
+                                                          width: 100%;
+                                                          text-align: center;
+                                                          font-size: 16px;
+                                                          color: #4c4f54;
+                                                          ">
+                                                        Cards in Force
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </th>
+                <th class="col2">
+                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0px 0px;">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" align="right" width="145" style="font-size:12px;color:#9FA0A3;font-family:arial;border-bottom: solid #002663 2px;">
+                                    <table style="border-collapse: collapse; border-spacing: 0px 0px;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="middle">
+                                                    @Html.Raw(Model.TransSvg)
+                                                    <br />
+                                                    <span style="
+                                                          padding-top: 10px;
+                                                          padding-bottom: 10px;
+                                                          display: block;
+                                                          width: 100%;
+                                                          text-align: center;
+                                                          font-size: 16px;
+                                                          color: #4c4f54;
+                                                          ">
+                                                        Transactions
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </th>
+                <th class="col3">
+                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0px 0px;">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" align="right" width="145" style="font-size:12px;color:#9FA0A3;font-family:arial;border-bottom: solid #002663 2px;">
+                                    <table style="border-collapse: collapse; border-spacing: 0px 0px;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="middle">
+                                                    @Html.Raw(Model.SpendSvg)<br />
+                                                    <span style="
+                                                          padding-top: 10px;
+                                                          padding-bottom: 10px;
+                                                          display: block;
+                                                          width: 100%;
+                                                          text-align: center;
+                                                          font-size: 16px;
+                                                          color: #4c4f54;
+                                                          ">
+                                                        Spent at merchants
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int loopCounter = 0;// This value is used to alternate the background colors in the rows
+                                    // These are the colors used for the postal code to represent each in respect to the chart images above their respective columns
+                var postCodeColors = new List<string>()
+                            {
+                                "#77206e", "#009aba",  "#36c4b6", "#3d9c34",  "#f1ae00", "#ec582a", "#898d8e", "#5e2750", "#006790", "#018566", "#02673b", "#cf8e00", "#a23e1a", "#717076", "#9a5fbb", "#91d6e6"};
+            }
+            @foreach (ComparisonPostcode postcode in Model.Postcodes)
+            {
+                <tr @(loopCounter % 2 == 0 ? "style=\"background-color: white;\"" : "")>
+                    <td class="postcode" style="padding: 10px;">
+                        <span style="color:@(postCodeColors[loopCounter%postCodeColors.Count()]);font-size:18px;font-family:arial;font-weight:bold;">@postcode.Postcode</span>
+                    </td>
+                    <td class="col1" align="right" style="text-align:right;font-size: 13px;color: #4c4f54;font-family: arial;">
+                        <span style="width: 100%; text-align: right;">
+                            @string.Format("{0:N}", postcode.Cards)
+                            <span class="percent" style="color: #4c4f54;font-size: 12px; padding-top: 2px;"></span>
+                        </span>
+                    </td>
+                    <td class="col2" align="right" style="text-align:right;font-size: 13px;color: #4c4f54;font-family: arial;">
+                        <span style="width: 100%; text-align: right;">
+                            @string.Format("{0:N}", postcode.Transactions)
+                            <span class="percent" style="color: #4c4f54;font-size: 12px; padding-top: 2px;"></span>
+                        </span>
+                    </td>
+                    <td class="col3" align="right" style="text-align:right;font-size: 13px;color: #4c4f54;font-family: arial;padding-right:10px">
+                        <span style="width: 100%; text-align: right;">
+                            @string.Format("{0:C}", postcode.MerchantSpend)
+                            <span class="percent" style="color: #4c4f54;font-size: 12px; padding-top: 2px;"></span>
+                        </span>
+                    </td>
+                </tr>
+
+                loopCounter++;// Increment the number of loop
+            }
+            <tr class="total-row" style="background-color: #002663;color: white; border-collapse: collapse; border-spacing: 0px;">
+                <td class="postcode" style="padding: 5px; border: 0px;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span style="font-size:13px;font-family:arial;font-weight:bold;">TOTAL</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="col1" align="right" style="text-align:right;font-family:arial;font-weight:bold; border: 0px; font-size: 13px;">
+                    <span style="width:100%;text-align:right;">
+                        <img src="@(Model.ImageDomain)img/card1.png" style="padding-right:10px;" />
+                        @string.Format("{0:N}", Model.TotalCards)
+                    </span>
+                </td>
+                <td class="col2" align="right" style="text-align:right;font-family:arial;font-weight:bold; border: 0px; font-size: 13px;">
+                    <span style="width:100%;text-align:right;">
+                        <img src="@(Model.ImageDomain)img/card2.png" style="padding-right:10px;" />
+                        @string.Format("{0:N}", Model.TotalTransactions)
+                    </span>
+
+                </td>
+                <td class="col3" align="right" style="text-align:right;font-family:arial;font-weight:bold;border: 0px;font-size: 13px; padding-right: 10px;">
+                    <span style="width:100%;text-align:right;">
+                        <img src="@(Model.ImageDomain)img/card3.png" style="padding-right:10px;" />
+                        @string.Format("{0:C}", Model.TotalMerchantSpend)
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- SPACER ROW-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+                <td>
+                    <img src="@(Model.ImageDomain)img/cleardot.gif" width="20" height="20" alt="" style="display:block">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- END SPACER ROW-->
+    <!-- End Main Content-->
+
+    <table width="595" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@(Model.ImageDomain)img/footer.jpg" alt="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p style="font-size:10px;font-family:arial;">
+        The information and representations contained in this presentation are based on publicly available sources and information that you may have provided us directly. All representations, facts and figures are made by way of example and are for illustrative purposes only. This presentation does not represent an offer and shall not be deemed to create any binding rights or obligations in respect to either party.
+    </p>
+
+    <p style="font-size:10px;font-family:arial;">
+        <b>TERMS & CONDITIONS:</b><br />American Express Australia Limited (ABN 92 108 952 085). &reg; Registered Trademark of American Express Company has developed this tool to provide aggregated information on American Express card activity within a specific postcode zone. The tool includes both direct and modelled data which should be used for indicative purposes only. Accuracy may vary by business unit - i.e. American Express Australia Limited (ABN 92 108 952 085). Extracted does not reflect any Personally Identifiable Information (PII).
+    </p>
+
+    <div style="font-size:10px;font-family:arial;">
+        <b>REFERENCES:</b>
+
+        @foreach (var item in Model.Sources)
+        {
+            <div>
+                @{var source = $"{item.Key}. {item.Value}";}
+                @(source)
+            </div>
+        }
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+﻿<div class="fullScreenOverlay" ng-show="visible"></div>
+<!-- Modal for the JPG claims-->
+<div class="select-modal" ng-show="visible">
+    <div class="wrapper">
+        <div class="inner">
+            <div class="close-btn" ng-click="closeModal()">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+            </div>
+            <h2>Select claims to download as jpgs</h2>
+            <div class="display-flex aligner">
+                <div class="item" ng-class="{'current':claim.selected}" ng-repeat="claim in claims track by claim.id" ng-click="toggleClaim(claim)">
+                    <div class="item-wrapper">
+                        <div class="col radio">
+                            <input type="checkbox" ng-checked="claim.selected">
+                        </div>
+                        <div class="col icon">
+                            <img src="{{claim.imagePath}}" alt="">
+                        </div>
+                        <div class="col text">
+                            {{claim.heading.substr(0, 22)}}...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="download-btn">
+                <a class="btn-primary cursor" ng-class="{'disabled': btnDisabled}" ng-click="confirmDownload()">DOWNLOAD</a>
+            </div>
+            <p class="text-center" ng-show="btnDisabled">Your download has started. This dialog will close shortly...</p>
+        </div>
+    </div>
+</div>

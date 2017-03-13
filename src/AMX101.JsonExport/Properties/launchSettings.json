@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AMX101.JsonExport": {
+      "commandName": "Project",
+      "commandLineArgs": "aus data air.set.local\\inst6"
+    }
+  }
+}

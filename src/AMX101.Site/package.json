@@ -1,0 +1,29 @@
+{
+  "name": "amx101",
+  "version": "1.0.0",
+  "scripts": {
+    "grunt": "grunt build",
+    "bower": "bower i",
+    "build": "npm-run-all bower grunt",
+    "backend": "SET ASPNETCORE_URLS=http://*:5050 && SET ASPNETCORE_ENVIRONMENT=Development && dotnet run",
+    "frontend":  "electron http://localhost:5050",
+    "start":  "concurrently \"npm run backend\" \"npm run frontend\""
+
+  },
+  "dependencies": {
+    "electron": "^1.4.13"
+   },
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.11",
+    "grunt-tslint": "^4.0.1",
+    "npm-run-all": "^4.0.2",
+    "tslint": "^4.5.0",
+    "typescript": "^2.2.1"
+  }
+}
